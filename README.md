@@ -9,13 +9,15 @@ O projeto abrange o processo de planejamento das etapas de desenvolvimento de um
 
 ## Pastas do Projeto
 
-- [Requisitos](https://github.com/heitormorak/UFG-Projeto-DS/tree/main/Requisitos%20do%20Projeto): detalha os stakeholders, suas necessidades e objetivos, além dos principais requisitos funcionais e não funcionais do sistema.
+- [Requisitos](https://github.com/pedromelo55/Dominios/tree/main/Requisitos%20do%20Sistema): detalha os stakeholders, suas necessidades e objetivos, além dos principais requisitos funcionais e não funcionais do sistema.
 
-- [Arquitetura](https://github.com/heitormorak/UFG-Projeto-DS/tree/main/Requisitos%20do%20Projeto): detalha os casos de uso, as visões arquiteturais, tecnologias utilizadas, camadas e comunicação do sistema.
+- [Arquitetura](https://github.com/pedromelo55/Dominios/tree/main/Arquitetura%20do%20Sistema): detalha os casos de uso, as visões arquiteturais, tecnologias utilizadas, camadas e comunicação do sistema.
 
-- [Sistema](https://github.com/heitormorak/UFG-Projeto-DS/tree/main/Requisitos%20do%20Projeto): pasta contendo o código-fonte do sistema construído a partir da documentação levantada.
+- [Sistema](https://github.com/pedromelo55/Dominios/tree/main/Sistema): pasta contendo o código-fonte do sistema construído a partir da documentação levantada.
 
 
+## Protótipo
 - [Protótipo](https://www.figma.com/file/5NEmGQwFQ7yJHUL0ELrxnv/Geot%C3%A9cnica?node-id=77%3A432&t=99YjIXkTKBwy67mc-1): protótipo de telas do sistema feito na ferramenta Figma.  
 
+## Arquivos 
 - [Drive](https://drive.google.com/drive/u/1/folders/1IJ7fHuj6DEi8LnxQNzoo3h5tIeP-IC5L): pasta disponibilizada para coleta de requisitos e entradas de amostras para processamento.
