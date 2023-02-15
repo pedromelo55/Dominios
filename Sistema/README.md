@@ -6,6 +6,8 @@
 - ReactJS
 
 ## Frontend
+- Entrar na pasta 'frontend' do projeto pelo cmd
+
 Pode ser executado com yarn ou npm:
 ```
 yarn install
@@ -22,6 +24,7 @@ npm run dev
 ```
 
 ## Backend
+- Entrar na pasta 'backend' do projeto pelo cmd
 ```
 npm install
 ```
