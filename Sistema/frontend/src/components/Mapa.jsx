@@ -6,6 +6,17 @@ import {LinearInterpolator} from '@deck.gl/core';
 import {CartoLayer, setDefaultCredentials, API_VERSIONS, MAP_TYPES} from '@deck.gl/carto';
 import {GeoJsonLayer} from '@deck.gl/layers';
  
+import {
+	Nav,
+	NavLink,
+	Bars,
+	NavMenu,
+	NavBtn,
+	NavBtnLink,
+	FooterLink,
+	Box,
+	Logo
+  } from './navbar/NavbarElements';
 
 const INITIAL_VIEW_STATE = {
   latitude: -16.690329,
@@ -215,12 +226,12 @@ export default function App({
       onLoad={rotateCamera}
       onViewStateChange={v => updateViewState(v.viewState)}
     >
+           
       <StaticMap reuseMaps mapStyle={mapStyle} preventStyleDiffing={true} />
     </DeckGL>
 
       </div>
-
-
+ 
 
     </div>
   );
@@ -228,5 +239,6 @@ export default function App({
 
 export function renderToDOM(container) {
   render(<App />, container);
+  
 }
 

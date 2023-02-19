@@ -23,7 +23,7 @@ padding: 0 1rem;
 height: 100%;
 cursor: pointer;
 &.active {
-	color: #188454;
+	color: #5EBB62;
 }
 `;
 
@@ -89,18 +89,18 @@ margin-left: 24px;
 
 export const FooterLink = styled.div`
   color: #000;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   font-size: 10px;
   text-decoration: none;
    
-  &:hover {
+ /* &:hover {
       color: #188454;
       transition: 200ms ease-in;
-  }
+  }*/
 `;
 export const Box = styled.div`
-  padding: 15px 60px;
-  position: absolute;
+  padding: 10px 20px;
+  position: fixed;
   bottom: 0;
   font-size: 10px;
   width: 100%;
@@ -108,12 +108,12 @@ export const Box = styled.div`
   background-color: #DCDCDC;
   color: black;
   text-align: center;
-   
+    
   @media (max-width: 1000px) {
     padding: 50px 30px;
   }
 `;
-export const Logo = styled(Link)`
+export const Logo = styled.div`
 text-transform: uppercase;
 color: #DCDCDC;
 display: flex;
@@ -122,10 +122,6 @@ text-decoration: none;
 font-weight: bold;
 padding: 0 1rem; 
 height: 100%;
-cursor: pointer;
-&.active {
-	color: #DCDCDC;
-}
 `;
 
 

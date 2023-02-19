@@ -1,20 +1,46 @@
 import React from 'react';
+import {
+	Nav,
+	NavLink,
+	Bars,
+	NavMenu,
+	NavBtn,
+	NavBtnLink,
+	FooterLink,
+	Box,
+	Logo
+  } from './navbar/NavbarElements';
 
 const Equipe = () => {
 return (
 	<div
 	style={{
 		display: 'flex',
-		justifyContent: 'Right',
+		justifyContent: 'center',
 		alignItems: 'Right',
 		height: '100vh'
 	}}
 	>
-	<h1>Equipe.
-		</h1>
-		<div class="component"><img src="../image/componente1.png" alt=""/></div>
-	</div>
+	<h1>		
+		<section>
+			<div>
+			<img src= 'component1.png'/>
+			</div>
+		</section>
 
+		</h1>
+		<Box>
+        <FooterLink>
+         <div>		  		
+			<img src='icone.png'/>
+          <h2> GEOTÉCNICA</h2>
+            <span >
+             UFG Copyright © 2010 - 2020
+            </span>
+			</div>
+         </FooterLink>
+      </Box>
+		</div>
 	
 );
 };
