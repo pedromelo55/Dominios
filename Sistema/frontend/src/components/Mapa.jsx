@@ -4,8 +4,7 @@ import {StaticMap} from 'react-map-gl';
 import DeckGL from '@deck.gl/react';
 import {LinearInterpolator} from '@deck.gl/core';
 import {CartoLayer, setDefaultCredentials, API_VERSIONS, MAP_TYPES} from '@deck.gl/carto';
-import {GeoJsonLayer} from '@deck.gl/layers';
- 
+import {GeoJsonLayer} from '@deck.gl/layers'; 
 import {
 	Nav,
 	NavLink,
@@ -63,6 +62,18 @@ export default function App({
     }));
   }, []);
 
+  const longitude = -49.253840;
+  const latitude = -16.690329;
+  const sideLength = 0.1; // in degrees
+
+  const topLeft = [longitude - sideLength/500, latitude + sideLength/500];
+  const topRight = [longitude + sideLength/500, latitude + sideLength/500];
+  const bottomRight = [longitude + sideLength/500, latitude - sideLength/500];
+  const bottomLeft = [longitude - sideLength/500, latitude - sideLength/500];
+
+  const squareCoordinates = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
+
+
   const polygonData = [  
     {    
       type: 'Feature',    
@@ -72,17 +83,7 @@ export default function App({
       },
       geometry: {      
         type: 'Polygon',      
-        coordinates: [        
-          [          
-            [-49.253990,-16.690940],
-            [-49.253990,-16.690980],
-            [-49.254030,-16.690980],
-            [-49.254030,-16.690940],
-            
-            //[-20.690329,-60.253840]
-        ]
-      ],
-     
+        coordinates:  [squareCoordinates],     
     }
   },
   {
@@ -143,7 +144,7 @@ export default function App({
 //       return POLYGON_COLORS.COLOR_6;
 //     }
 //     return POLYGON_COLORS.OTHER;
-//   },
+//   },av
 //   getLineWidth: 1,
 //   pickable: true,
 // });
@@ -231,8 +232,6 @@ export default function App({
     </DeckGL>
 
       </div>
- 
-
     </div>
   );
 }
