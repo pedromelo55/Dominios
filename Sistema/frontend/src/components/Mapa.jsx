@@ -5,11 +5,11 @@ import DeckGL from '@deck.gl/react';
 import {LinearInterpolator} from '@deck.gl/core';
 import {CartoLayer, setDefaultCredentials, API_VERSIONS, MAP_TYPES} from '@deck.gl/carto';
 import {GeoJsonLayer} from '@deck.gl/layers';
-
+ 
 
 const INITIAL_VIEW_STATE = {
-  latitude: -16.686897,
-  longitude: -49.264812,
+  latitude: -16.690329,
+  longitude: -49.253840,
   zoom: 11,
   pitch: 60,
   bearing: 0
@@ -63,8 +63,12 @@ export default function App({
         type: 'Polygon',      
         coordinates: [        
           [          
-            [-49.264812, -16.686897],
-            [-16.690329,-49.253840]
+            [-49.253990,-16.690940],
+            [-49.253990,-16.690980],
+            [-49.254030,-16.690980],
+            [-49.254030,-16.690940],
+            
+            //[-20.690329,-60.253840]
         ]
       ],
      
@@ -81,7 +85,24 @@ export default function App({
       coordinates: [
         [
           [-16.690329,-49.253840],
-          [-16.690329,-49.253840]
+          [-16.690329,-49.253848]
+        ]
+      ],
+      index: 500
+    }
+  },
+  {
+    type: 'Feature',
+    properties: {
+      name: 'Polygon 3',
+      index: 500
+    },
+    geometry: {
+      type: 'Polygon',
+      coordinates: [
+        [
+          [-16.690329,-49.253840],
+          [-16.690329,-49.253848]
         ]
       ],
       index: 500
