@@ -6,8 +6,6 @@ import {
   NavMenu,
   NavBtn,
   NavBtnLink,
-  FooterLink,
-  Box,
   Logo
 } from './NavbarElements';
   
@@ -17,7 +15,7 @@ const Navbar = () => {
       
       <Nav>
       <Logo to='/Geotécnica' activeStyle>
-        Geotécnica
+              Geotécnica
           </Logo>
         <NavMenu>
           <NavLink to='/Home' activeStyle>
@@ -35,15 +33,7 @@ const Navbar = () => {
         </NavBtn>
         
       </Nav>
-      <Box>
-        <FooterLink>
-         <img src="../public/icone.png" alt="" />
-          <h2> GEOTÉCNICA</h2>
-            <span style={{marginTop: "5px" }}>
-             UFG Copyright © 2010 - 2020
-            </span>
-         </FooterLink>
-      </Box>
+    
     </> 
   
   );
