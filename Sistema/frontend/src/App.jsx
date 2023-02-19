@@ -17,6 +17,7 @@ function App() {
         <Route path='/Amostra' element={<Amostra/>} />  
       </Routes>
     </Router>
+    
     </>
   );
 }

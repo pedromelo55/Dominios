@@ -10,8 +10,12 @@ return (
 		height: '100vh'
 	}}
 	>
-	<h1>Equipe.</h1>
+	<h1>Equipe.
+		</h1>
+		<div class="component"><img src="../image/componente1.png" alt=""/></div>
 	</div>
+
+	
 );
 };
 

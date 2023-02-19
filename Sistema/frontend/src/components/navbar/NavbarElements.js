@@ -15,7 +15,7 @@ justify-content: space-between;
 
 export const NavLink = styled(Link)`
 text-transform: uppercase;
-color: #FFFFFF;
+color: #DCDCDC;
 display: flex;
 align-items: center;
 text-decoration: none;
@@ -23,7 +23,7 @@ padding: 0 1rem;
 height: 100%;
 cursor: pointer;
 &.active {
-	color: #04442a;
+	color: #188454;
 }
 `;
 
@@ -70,7 +70,7 @@ width: 100vw; */
 
 export const NavBtnLink = styled(Link)`
 border-radius: 4px;
-background: #04442a;
+background: #188454;
 padding: 10px 22px;
 color: #ffffff;
 outline: none;
@@ -86,3 +86,46 @@ margin-left: 24px;
 	color: #808080;
 }
 `;
+
+export const FooterLink = styled.div`
+  color: #000;
+  margin-bottom: 20px;
+  font-size: 10px;
+  text-decoration: none;
+   
+  &:hover {
+      color: #188454;
+      transition: 200ms ease-in;
+  }
+`;
+export const Box = styled.div`
+  padding: 15px 60px;
+  position: absolute;
+  bottom: 0;
+  font-size: 10px;
+  width: 100%;
+  left: 0;
+  background-color: #DCDCDC;
+  color: black;
+  text-align: center;
+   
+  @media (max-width: 1000px) {
+    padding: 50px 30px;
+  }
+`;
+export const Logo = styled(Link)`
+text-transform: uppercase;
+color: #DCDCDC;
+display: flex;
+align-items: center;
+text-decoration: none;
+font-weight: bold;
+padding: 0 1rem; 
+height: 100%;
+cursor: pointer;
+&.active {
+	color: #DCDCDC;
+}
+`;
+
+
