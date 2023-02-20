@@ -170,7 +170,7 @@ height: 100%;
 `;
 export const NavBtnLinkHome = styled(Link)`
 border-radius: 10px;
-background: #188454;
+background: #164C34;
 padding: 10px 22px;
 color: #ffffff;
 border: none;

@@ -16,6 +16,7 @@ return (
 	>
 	<h1>		
 		<section>
+			<br />
 			<div>
 			<img src= 'component1.png'/>
 			</div>
