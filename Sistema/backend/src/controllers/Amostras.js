@@ -1,12 +1,23 @@
 import { Amostra } from '../models/amostrasModel.js'
 
-export async function GetAmostras (req, res) {
+export async function GetRelatorio (req, res) {
     try {
-        const amostras = await Amostra.findAll({
+        const relatorio = await Amostra.findAll({
             attributes: ['id', 'num_rel', 'num_furo']
         });
-        res.json(amostras)
+        res.json(relatorio)
     } catch (error) {
+        console.error(error)
+    }
+}
+
+export async function GetAmostras (req, res) {
+     try{
+        const amostras = await Amostra.findAll({
+            attributes: ['coox', 'cooy', 'nspt12', 'nspt23']
+        });
+        res.json(amostras)
+     }catch (error) {
         console.error(error)
     }
 }

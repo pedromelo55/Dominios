@@ -17,8 +17,9 @@ app.use(express.json())
 app.use(cors())
 
 //rotas sistema
-app.get('/api/amostras', GetAmostras)
-app.get('/api/enroll', Enroll);
+app.get('/getamostras', GetAmostras)
+app.get('/enroll', Enroll);
+
 
 app.listen(port,()=>{
     console.log(`Server is running in the port: ${port}`)

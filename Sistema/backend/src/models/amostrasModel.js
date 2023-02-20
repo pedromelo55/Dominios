@@ -9,11 +9,6 @@ export const Amostra = conexao.define('amostra', {
         allowNull: false,
     },
 
-    num_furo: {
-        type: Sequelize.STRING(10),
-        allowNull: false,
-    },
-
     cooX: {
         type: Sequelize.FLOAT,
         allowNull: false,
@@ -24,12 +19,12 @@ export const Amostra = conexao.define('amostra', {
         allowNull: false,
     },
 
-    nspt1: {
+    nspt12: {
         type: Sequelize.INTEGER,
         allowNull: false,
     },
 
-    nspt2: {
+    nspt23: {
         type: Sequelize.INTEGER,
         allowNull: true,
     }

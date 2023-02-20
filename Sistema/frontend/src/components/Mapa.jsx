@@ -1,4 +1,4 @@
-import React, {useState, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import {render} from 'react-dom';
 import {StaticMap} from 'react-map-gl';
 import DeckGL from '@deck.gl/react';
@@ -72,6 +72,22 @@ export default function App({
   const bottomLeft = [longitude - sideLength/500, latitude - sideLength/500];
 
   const squareCoordinates = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
+
+  const server = 'http://localhost:8080'
+
+  useEffect(() => {
+    async function GetAmostras() {
+      const response = await fetch(`${server}/getamostras`)
+      if (response.status >= 200 && response.status <=300){
+        const body = await response.json()
+        console.log("RESPOSTAAAA:")
+        console.log(body)      
+      } else {
+        console.log("ERRO");
+      }  
+    }
+    GetAmostras();
+  }, []);
 
 
   const polygonData = [  
