@@ -5,17 +5,6 @@ import DeckGL from '@deck.gl/react';
 import {LinearInterpolator} from '@deck.gl/core';
 import {CartoLayer, setDefaultCredentials, API_VERSIONS, MAP_TYPES} from '@deck.gl/carto';
 import {GeoJsonLayer} from '@deck.gl/layers'; 
-import {
-	Nav,
-	NavLink,
-	Bars,
-	NavMenu,
-	NavBtn,
-	NavBtnLink,
-	FooterLink,
-	Box,
-	Logo
-  } from './navbar/NavbarElements';
 
 const INITIAL_VIEW_STATE = {
   latitude: -16.690329,
@@ -62,8 +51,9 @@ export default function App({
     }));
   }, []);
 
-  const longitude = -49.253840;
-  const latitude = -16.690329;
+
+  const longitude = -49.239831429464097;
+  const latitude = -16.7216789466306;
   const sideLength = 0.1; // in degrees
 
   const topLeft = [longitude - sideLength/500, latitude + sideLength/500];
@@ -102,93 +92,11 @@ export default function App({
         coordinates:  [squareCoordinates],     
     }
   },
-  // {
-  //   type: 'Feature',
-  //   properties: {
-  //     name: 'Polygon 2',
-  //     index: 500
-  //   },
-  //   geometry: {
-  //     type: 'Polygon',
-  //     coordinates: [
-  //       [
-  //         [-16.690329,-49.253840],
-  //         [-16.690329,-49.253848]
-  //       ]
-  //     ],
-  //     index: 500
-  //   }
-  // },
-  // {
-  //   type: 'Feature',
-  //   properties: {
-  //     name: 'Polygon 3',
-  //     index: 500
-  //   },
-  //   geometry: {
-  //     type: 'Polygon',
-  //     coordinates: [
-  //       [
-  //         [-16.690329,-49.253840],
-  //         [-16.690329,-49.253848]
-  //       ]
-  //     ],
-  //     index: 500
-  //   }
-  // }
 ];
-
-// const geojsonLayer = new GeoJsonLayer ({
-//   id: 'geojson-layer',
-//   data: polygonData,
-//   stroked: true,
-//   filled: true,
-//   lineWidthMinPixels: 2,
-//   getLineColor: [0, 0, 0, 0],
-//   getFillColor: object => {
-//     if (object.properties.index > 1000) {
-//       return POLYGON_COLORS.COLOR_1;
-//     } else if (object.properties.index > 500) {
-//       return POLYGON_COLORS.COLOR_2;
-//     } else if (object.properties.index > 300) {
-//       return POLYGON_COLORS.COLOR_3;
-//     } else if (object.properties.index > 100) {
-//       return POLYGON_COLORS.COLOR_4;
-//     } else if (object.properties.index > 50) {
-//       return POLYGON_COLORS.COLOR_5;
-//     } else if (object.properties.index > 25) {
-//       return POLYGON_COLORS.COLOR_6;
-//     }
-//     return POLYGON_COLORS.OTHER;
-//   },av
-//   getLineWidth: 1,
-//   pickable: true,
-// });
-
-  // const SQL = [
-  //   { 
-  //     the_geom_webmercator: [8156948.55, 687359.26],
-  //     index: 500
-  //   },
-  //   { 
-  //     the_geom_webmercator: [8156190.15, 686830.14],
-  //     index: 800
-  //   },
-  //   { 
-  //     the_geom_webmercator: [8154546.45, 684838.29],
-  //     index: 300
-  //   },
-  //   { 
-  //     the_geom_webmercator: [8154555.76, 684869.69 ],
-  //     index: 2000
-  //   }
-  // ];
-  
 
   const layers = [
     new GeoJsonLayer({
       id: 'geojson-layer',
-     // type: MAP_TYPES.TILESET,
       data: polygonData,      
       getLineColor: [0, 0, 0, 0],
       getFillColor: object => {

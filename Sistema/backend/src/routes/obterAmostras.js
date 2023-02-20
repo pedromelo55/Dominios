@@ -6,42 +6,87 @@ export async function GetAmostras (req, res) {
         const amostras = await Amostra.findAll({
             attributes: ['coox', 'cooy', 'nspt12', 'nspt23']
         });
-
-        amostras.forEach(async (amostra) => {
-            console.log("amostra:", amostra)
-            console.log("aaaaa", amostra.dataValues.coox)
-            console.log("amostra.dataValues.coox:", amostra.dataValues.coox)
-            console.log("amostra.dataValues.cooy:", amostra.dataValues.cooy)
-
-            var profundidade = 0;
+        
+        const polygonDataArray = amostras.map ((amostra) => {            
+            let profundidade = 0;
             if (amostra.nspt23 === null){
                  profundidade = amostra.dataValues.nspt12;
             } 
             else {
                 profundidade = amostra.dataValues.nspt23;
             }
-        });
 
-        console.log("amostras:", amostras)
-        res.json(amostras)
+            //console.log("AAAAAAA:", amostra.dataValues.coox, amostra.dataValues.cooy)
+            let square = square(amostra.dataValues.coox, amostra.dataValues.cooy);
+            //console.log("square:", square)
+            return {
+                type: "Feature",
+                properties: {
+                  name: `Polygon ${amostra.id}`,
+                  index: profundidade,
+                },
+                geometry: {
+                  type: "Polygon",
+                  coordinates: square,
+                },
+              };
+            });
+
+        console.log("amostras:", polygonDataArray)
+
+        res.json(polygonDataArray)
     } catch (error) {
         console.error(error)
     }
 }
 
-function converter (x, y){
-    const sourceProj = 'EPSG:4326';
-    const destProj = 'EPSG:3857';
+function square(x, y){
+  const longitude = x;
+  const latitude = y;
+  const sideLength = 0.1; // in degrees
 
-    const latitude = y;
-    const longitude = x;
+  const topLeft = [longitude - sideLength/500, latitude + sideLength/500];
+  const topRight = [longitude + sideLength/500, latitude + sideLength/500];
+  const bottomRight = [longitude + sideLength/500, latitude - sideLength/500];
+  const bottomLeft = [longitude - sideLength/500, latitude - sideLength/500];
 
-    // Define the projections
-    proj4.defs(sourceProj, '+proj=longlat +datum=WGS84 +no_defs');
-    proj4.defs(destProj, '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs');
+  const squareCoordinates = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
+  //console.log("squareCoordinates:", squareCoordinates)
 
-    var convertedCoords = proj4(sourceProj, destProj, [x, y]);
-    console.log("cx e cy:", convertedCoords)
-
-    return convertedCoords
+  return squareCoordinates;
 }
+
+// function converter (x, y){
+    
+//     // Define the projections
+//     const sourceProj = '+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs';
+//     const destProj = '+proj=longlat +datum=WGS84 +no_defs';
+    
+//     var convertedCoords = proj4(sourceProj, destProj, [x, y]);
+//     console.log("cx e cy:", convertedCoords)
+
+//     return convertedCoords
+// }
+
+// function teste(){
+
+// // Define the input and output projections
+// // const inputProjection = '+proj=longlat +datum=WGS84 +no_defs';
+// // const outputProjection = '+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs';
+
+// const inputProjection = '+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs';
+// const outputProjection = '+proj=longlat +datum=WGS84 +no_defs';
+    
+
+// // Define the input coordinates
+// const X = 687706.78;
+// const Y = 8150447.23;
+
+// // Convert the coordinates to the output projection
+// const [lon, lat] = proj4(inputProjection, outputProjection, [X, Y]);
+
+// // Print the output coordinates
+// console.log(`Y = ${lat}`);
+// console.log(`X = ${lon}`);
+
+// }
