@@ -6,6 +6,9 @@ import {LinearInterpolator} from '@deck.gl/core';
 import {CartoLayer, setDefaultCredentials, API_VERSIONS, MAP_TYPES} from '@deck.gl/carto';
 import {GeoJsonLayer} from '@deck.gl/layers'; 
 
+
+
+
 const INITIAL_VIEW_STATE = {
   latitude: -16.690329,
   longitude: -49.253840,
@@ -38,8 +41,13 @@ export default function App({
   industry = 'ret',
   week = ['2020-01-01', '2020-01-05'],
   mapStyle = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
+
+
+
 }) {
-  const [viewState, updateViewState] = useState(INITIAL_VIEW_STATE);
+  const [viewState, updateViewState] = useState(INITIAL_VIEW_STATE); 
+  const [polygonData, setPolygonData] = useState(null); // initialize as null
+
 
   const rotateCamera = useCallback(() => {
     updateViewState(v => ({
@@ -66,72 +74,93 @@ export default function App({
   const server = 'http://localhost:8080'
 
   useEffect(() => {
-    async function GetAmostras() {
-      const response = await fetch(`${server}/getamostras`)
-      if (response.status >= 200 && response.status <=300){
-        const body = await response.json()
-        console.log("RESPOSTAAAA:")
-        console.log(body)      
+    async function fetchData() {
+      const response = await fetch(`${server}/getamostras`);
+
+      if (response.status >= 200 && response.status <= 300) {
+        const polygon = await response.json();
+        setPolygonData(polygon);
       } else {
         console.log("ERRO");
-      }  
+      }
     }
-    GetAmostras();
+
+    fetchData();
   }, []);
 
-
-  const polygonData = [  
-    {    
-      type: 'Feature',    
-      properties: {      
-        name: 'Polygon 1',
-        index: 500    
-      },
-      geometry: {      
-        type: 'Polygon',      
-        coordinates:  [squareCoordinates],     
-    }
-  },
-];
-
-  const layers = [
-    new GeoJsonLayer({
-      id: 'geojson-layer',
-      data: polygonData,      
-      getLineColor: [0, 0, 0, 0],
-      getFillColor: object => {
-        if (object.properties.index > 1000) {
-          return POLYGON_COLORS.COLOR_1;
-        } else if (object.properties.index > 500) {
-          return POLYGON_COLORS.COLOR_2;
-        } else if (object.properties.index > 300) {
-          return POLYGON_COLORS.COLOR_3;
-        } else if (object.properties.index > 100) {
-          return POLYGON_COLORS.COLOR_4;
-        } else if (object.properties.index > 50) {
-          return POLYGON_COLORS.COLOR_5;
-        } else if (object.properties.index > 25) {
-          return POLYGON_COLORS.COLOR_6;
+  const layers = polygonData
+    ? [
+      new GeoJsonLayer({
+        id: 'geojson-layer',
+        data: polygonData,      
+        getLineColor: [0, 0, 0, 0],
+        getFillColor: object => {
+          if (object.properties.index > 1000) {
+            return POLYGON_COLORS.COLOR_1;
+          } else if (object.properties.index > 80) {
+            return POLYGON_COLORS.COLOR_2;
+          } else if (object.properties.index > 70) {
+            return POLYGON_COLORS.COLOR_3;
+          } else if (object.properties.index > 60) {
+            return POLYGON_COLORS.COLOR_4;
+          } else if (object.properties.index > 50) {
+            return POLYGON_COLORS.COLOR_5;
+          } else if (object.properties.index > 25) {
+            return POLYGON_COLORS.COLOR_6;
+          }
+          return POLYGON_COLORS.OTHER;
+        },
+        lineWidthMinPixels: 0,
+        pickable: true,
+        filled: true,
+        extruded: true,
+        wireframe: true,
+        getElevation: f => {
+          return f.properties.index ? f.properties.index : 0;
+        },
+        transitions: {
+          getElevation: {
+            duration: 1000,
+            enter: () => [0]
+          }
         }
-        return POLYGON_COLORS.OTHER;
-      },
-      lineWidthMinPixels: 0,
-      pickable: true,
-      filled: true,
-      extruded: true,
-      wireframe: true,
-      getElevation: f => {
-        return f.properties.index ? f.properties.index : 0;
-      },
-      transitions: {
-        getElevation: {
-          duration: 1000,
-          enter: () => [0]
-        }
-      }
-    })
-  ];
+      })
+    ] : [];
+  
+  // let polygonData;
+  
+  // async function GetAmostras() {
+  //   const response = await fetch(`${server}/getamostras`)
+    
+  //   if (response.status >= 200 && response.status <=300){
+  //     const polygon = await response.json()  
+  //     polygonData = polygon
+  //     return polygonData
+  //   } else {
+  //     console.log("ERRO");
+  //   }  
+  // }
 
+  // async function ExecuteGetAmostras(){
+  //   await GetAmostras()
+  // }
+  // ExecuteGetAmostras();
+
+//   const polygonData = [  
+//     {    
+//       type: 'Feature',    
+//       properties: {      
+//         name: 'Polygon 1',
+//         index: 500    
+//       },
+//       geometry: {      
+//         type: 'Polygon',      
+//         coordinates:  [squareCoordinates],     
+//     }
+//   },
+// ];
+
+  
   const getTooltip = ({object}) => {
     if (!object) return false;
     const {index} = object.properties;

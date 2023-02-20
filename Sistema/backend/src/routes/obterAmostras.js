@@ -1,46 +1,7 @@
 import { Amostra } from '../models/amostrasModel.js';
 import proj4 from 'proj4';
 
-export async function GetAmostras (req, res) {
-    try {
-        const amostras = await Amostra.findAll({
-            attributes: ['coox', 'cooy', 'nspt12', 'nspt23']
-        });
-        
-        const polygonDataArray = amostras.map ((amostra) => {            
-            let profundidade = 0;
-            if (amostra.nspt23 === null){
-                 profundidade = amostra.dataValues.nspt12;
-            } 
-            else {
-                profundidade = amostra.dataValues.nspt23;
-            }
-
-            //console.log("AAAAAAA:", amostra.dataValues.coox, amostra.dataValues.cooy)
-            let square = square(amostra.dataValues.coox, amostra.dataValues.cooy);
-            //console.log("square:", square)
-            return {
-                type: "Feature",
-                properties: {
-                  name: `Polygon ${amostra.id}`,
-                  index: profundidade,
-                },
-                geometry: {
-                  type: "Polygon",
-                  coordinates: square,
-                },
-              };
-            });
-
-        console.log("amostras:", polygonDataArray)
-
-        res.json(polygonDataArray)
-    } catch (error) {
-        console.error(error)
-    }
-}
-
-function square(x, y){
+function GetSquare(x, y){
   const longitude = x;
   const latitude = y;
   const sideLength = 0.1; // in degrees
@@ -55,6 +16,47 @@ function square(x, y){
 
   return squareCoordinates;
 }
+
+export async function GetAmostras (req, res) {
+    try {
+        const amostras = await Amostra.findAll({
+            attributes: ['coox', 'cooy', 'nspt12', 'nspt23']
+        });
+        
+        const polygonDataArray = amostras.map((amostra) => {            
+            let profundidade = 0;
+            if (amostra.nspt23 === null){
+                 profundidade = amostra.dataValues.nspt12;
+            } 
+            else {
+                profundidade = amostra.dataValues.nspt23;
+            }
+
+            const x = amostra.dataValues.coox
+            const y = amostra.dataValues.cooy
+            let square = GetSquare(x,y);
+            return {
+                       
+                type: "Feature",
+                properties: {
+                  name: `Polygon ${amostra.id}`,
+                  index: profundidade,
+                },
+                geometry: {
+                  type: "Polygon",
+                  coordinates: [square],
+                },
+            };
+            });
+
+
+        res.json(polygonDataArray)
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+
 
 // function converter (x, y){
     
