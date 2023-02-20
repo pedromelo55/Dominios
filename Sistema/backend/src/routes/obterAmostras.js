@@ -13,12 +13,6 @@ export async function GetAmostras (req, res) {
             console.log("amostra.dataValues.coox:", amostra.dataValues.coox)
             console.log("amostra.dataValues.cooy:", amostra.dataValues.cooy)
 
-            const conv = converter(amostra.dataValues.coox, amostra.dataValues.cooy)
-            console.log("conv:", conv)
-            const longitude = conv.x;
-            const latitude = conv.y;
-            console.log("lat e long:", latitude, longitude)
-
             var profundidade = 0;
             if (amostra.nspt23 === null){
                  profundidade = amostra.dataValues.nspt12;
@@ -36,11 +30,15 @@ export async function GetAmostras (req, res) {
 }
 
 function converter (x, y){
-    const sourceProj = 'EPSG:3857';
-    const destProj = 'EPSG:4326';
+    const sourceProj = 'EPSG:4326';
+    const destProj = 'EPSG:3857';
 
     const latitude = y;
     const longitude = x;
+
+    // Define the projections
+    proj4.defs(sourceProj, '+proj=longlat +datum=WGS84 +no_defs');
+    proj4.defs(destProj, '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs');
 
     var convertedCoords = proj4(sourceProj, destProj, [x, y]);
     console.log("cx e cy:", convertedCoords)

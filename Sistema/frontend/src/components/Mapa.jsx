@@ -102,40 +102,40 @@ export default function App({
         coordinates:  [squareCoordinates],     
     }
   },
-  {
-    type: 'Feature',
-    properties: {
-      name: 'Polygon 2',
-      index: 500
-    },
-    geometry: {
-      type: 'Polygon',
-      coordinates: [
-        [
-          [-16.690329,-49.253840],
-          [-16.690329,-49.253848]
-        ]
-      ],
-      index: 500
-    }
-  },
-  {
-    type: 'Feature',
-    properties: {
-      name: 'Polygon 3',
-      index: 500
-    },
-    geometry: {
-      type: 'Polygon',
-      coordinates: [
-        [
-          [-16.690329,-49.253840],
-          [-16.690329,-49.253848]
-        ]
-      ],
-      index: 500
-    }
-  }
+  // {
+  //   type: 'Feature',
+  //   properties: {
+  //     name: 'Polygon 2',
+  //     index: 500
+  //   },
+  //   geometry: {
+  //     type: 'Polygon',
+  //     coordinates: [
+  //       [
+  //         [-16.690329,-49.253840],
+  //         [-16.690329,-49.253848]
+  //       ]
+  //     ],
+  //     index: 500
+  //   }
+  // },
+  // {
+  //   type: 'Feature',
+  //   properties: {
+  //     name: 'Polygon 3',
+  //     index: 500
+  //   },
+  //   geometry: {
+  //     type: 'Polygon',
+  //     coordinates: [
+  //       [
+  //         [-16.690329,-49.253840],
+  //         [-16.690329,-49.253848]
+  //       ]
+  //     ],
+  //     index: 500
+  //   }
+  // }
 ];
 
 // const geojsonLayer = new GeoJsonLayer ({
