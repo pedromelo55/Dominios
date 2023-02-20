@@ -1,14 +1,7 @@
 import React from 'react';
 import {
-	Nav,
-	NavLink,
-	Bars,
-	NavMenu,
-	NavBtn,
-	NavBtnLink,
 	FooterLink,
 	Box,
-	Logo
   } from './navbar/NavbarElements';
 
 const Equipe = () => {
@@ -23,6 +16,7 @@ return (
 	>
 	<h1>		
 		<section>
+			<br />
 			<div>
 			<img src= 'component1.png'/>
 			</div>
