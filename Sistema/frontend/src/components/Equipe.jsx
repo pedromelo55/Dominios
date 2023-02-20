@@ -1,14 +1,7 @@
 import React from 'react';
 import {
-	Nav,
-	NavLink,
-	Bars,
-	NavMenu,
-	NavBtn,
-	NavBtnLink,
 	FooterLink,
 	Box,
-	Logo
   } from './navbar/NavbarElements';
 
 const Equipe = () => {

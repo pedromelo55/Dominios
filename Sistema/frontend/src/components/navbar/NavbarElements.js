@@ -100,18 +100,63 @@ export const FooterLink = styled.div`
 `;
 export const Box = styled.div`
   padding: 10px 20px;
-  position: fixed;
-  bottom: 0;
+  position: absolute;
   font-size: 10px;
   width: 100%;
-  left: 0;
   background-color: #DCDCDC;
   color: black;
   text-align: center;
-    
-  @media (max-width: 1000px) {
-    padding: 50px 30px;
-  }
+  margin-right: -24px;
+  margin-top: 1450px;
+/* Second Nav */
+/* margin-right: 24px; */
+/* Third Nav */
+/* width: 100vw;
+white-space: nowrap; */
+@media screen and (max-width: 768px) {
+	display: none;
+}
+  
+ `;
+ export const BoxHome = styled.div`
+  padding: 10px 20px;
+  position: absolute;
+  font-size: 10px;
+  width: 100%;
+  background-color: #DCDCDC;
+  color: black;
+  text-align: center;
+  margin-right: -24px;
+  margin-top: 500px;
+/* Second Nav */
+/* margin-right: 24px; */
+/* Third Nav */
+/* width: 100vw;
+white-space: nowrap; */
+@media screen and (max-width: 768px) {
+	display: none;
+}
+  
+ `;
+export const BoxCenter = styled.div`
+  position: absolute;
+  font-size: 20px;
+  width: 100%;
+  background-color: rgba(217, 217, 217, .85);
+  padding: 36px;
+  margin: 15% 0 15% 0;
+  color: #3F3939;
+  text-align: center;
+  margin-right: -24px;
+/* Second Nav */
+/* margin-right: 24px; */
+/* Third Nav */
+/* width: 100vw;
+white-space: nowrap; */
+@media screen and (max-width: 768px) {
+	display: none;
+}
+ 
 `;
 export const Logo = styled.div`
 text-transform: uppercase;
@@ -123,5 +168,33 @@ font-weight: bold;
 padding: 0 1rem; 
 height: 100%;
 `;
+export const NavBtnLinkHome = styled(Link)`
+border-radius: 10px;
+background: #188454;
+padding: 10px 22px;
+color: #ffffff;
+border: none;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+text-decoration: none;
+/* Second Nav */
+margin-left: 24px;
+&:hover {
+	transition: all 0.2s ease-in-out;
+	background: #fff;
+	color: #808080;
+}
+`;
+export const NavBtnHome = styled.nav`
 
-
+display: flex;
+align-items: center;
+margin-right: 24px;
+display: inline-block;
+/* Third Nav */
+/* justify-content: flex-end;
+width: 100vw; */
+@media screen and (max-width: 708px) {
+	display: none;
+}
+`;
