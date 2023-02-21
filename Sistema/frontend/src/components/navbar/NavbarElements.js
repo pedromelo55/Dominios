@@ -83,7 +83,7 @@ margin-left: 24px;
 &:hover {
 	transition: all 0.2s ease-in-out;
 	background: #fff;
-	color: #808080;
+	color: #164C34;
 }
 `;
 
@@ -182,7 +182,7 @@ margin-left: 24px;
 &:hover {
 	transition: all 0.2s ease-in-out;
 	background: #fff;
-	color: #808080;
+	color: #164C34;
 }
 `;
 export const NavBtnHome = styled.nav`
