@@ -35,7 +35,7 @@ export async function GetAmostras (req, res) {
                 golpes = amostra.dataValues.nspt23;
             }
 
-            golpes > 50 ? penetravel = true : penetravel = false;
+            golpes < 50 ? penetravel = true : penetravel = false;
 
 
             const x = amostra.dataValues.coox

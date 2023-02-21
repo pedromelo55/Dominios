@@ -90,7 +90,7 @@ export default function App({
         wireframe: true,
         getElevation: f => {
           console.log("fffffffffffff", f.properties)
-          return (f.properties.penetravel ? f.properties.index : 0)*100;
+          return (f.properties.penetravel==false ? f.properties.index : 0)*100;
         },
         transitions: {
           getElevation: {
@@ -106,8 +106,15 @@ export default function App({
     const {index} = object.properties;
     const {penetravel} = object.properties;
 
-    return `Profundidade: ${index.toFixed(2)} metros
-            Penetrável: ${penetravel}`;    
+    if (penetravel == true){
+      return `Profundidade: ${index.toFixed(2)} metros
+            Penetrável: sim`;
+    } else {
+      return `Profundidade: ${index.toFixed(2)} metros
+      Penetrável: não`;
+    }
+
+        
   };
 
   return (
