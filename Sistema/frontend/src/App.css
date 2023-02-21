@@ -8,6 +8,7 @@
 body {
   background-image: url("../public/fundo.png");
   background-position: right center;
+  background-size:cover;
 }
 
 @font-face {

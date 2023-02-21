@@ -21,7 +21,7 @@ return (
 	>
     <BoxCenter>
          <h2>Apoio à Geotécnica</h2>
-            <span >
+            <span style={{fontWeight: '400'}}>
             Visualize os dados dos subsolos em Goiânia!
             </span>
 			<br />
