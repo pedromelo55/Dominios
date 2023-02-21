@@ -20,17 +20,23 @@ function GetSquare(x, y){
 export async function GetAmostras (req, res) {
     try {
         const amostras = await Amostra.findAll({
-            attributes: ['coox', 'cooy', 'nspt12', 'nspt23']
+            attributes: ['coox', 'cooy', 'nspt12', 'nspt23', 'num_amostra']
         });
         
         const polygonDataArray = amostras.map((amostra) => {            
-            let profundidade = 0;
-            if (amostra.nspt23 === null){
-                 profundidade = amostra.dataValues.nspt12;
+            let profundidade = amostra.dataValues.num_amostra + 1;
+            let penetravel = false;
+            let golpes = 0;
+
+            if (amostra.dataValues.nspt23 === null){
+                golpes = amostra.dataValues.nspt12;
             } 
             else {
-                profundidade = amostra.dataValues.nspt23;
+                golpes = amostra.dataValues.nspt23;
             }
+
+            golpes > 50 ? penetravel = true : penetravel = false;
+
 
             const x = amostra.dataValues.coox
             const y = amostra.dataValues.cooy
@@ -41,6 +47,7 @@ export async function GetAmostras (req, res) {
                 properties: {
                   name: `Polygon ${amostra.id}`,
                   index: profundidade,
+                  penetravel,
                 },
                 geometry: {
                   type: "Polygon",

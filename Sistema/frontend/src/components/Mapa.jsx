@@ -3,11 +3,8 @@ import {render} from 'react-dom';
 import {StaticMap} from 'react-map-gl';
 import DeckGL from '@deck.gl/react';
 import {LinearInterpolator} from '@deck.gl/core';
-import {CartoLayer, setDefaultCredentials, API_VERSIONS, MAP_TYPES} from '@deck.gl/carto';
+import { setDefaultCredentials, API_VERSIONS} from '@deck.gl/carto';
 import {GeoJsonLayer} from '@deck.gl/layers'; 
-
-
-
 
 const INITIAL_VIEW_STATE = {
   latitude: -16.690329,
@@ -20,7 +17,7 @@ const INITIAL_VIEW_STATE = {
 // Colors for the breaks of the polygon layer
 const POLYGON_COLORS = {
   COLOR_1: [225, 83, 131],
-  COLOR_2: [241, 109, 122],
+  COLOR_2: [254, 246, 181],
   COLOR_3: [250, 138, 118],
   COLOR_4: [255, 166, 121],
   COLOR_5: [255, 194, 133],
@@ -41,13 +38,10 @@ export default function App({
   industry = 'ret',
   week = ['2020-01-01', '2020-01-05'],
   mapStyle = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json'
-
-
-
 }) {
+
   const [viewState, updateViewState] = useState(INITIAL_VIEW_STATE); 
   const [polygonData, setPolygonData] = useState(null); // initialize as null
-
 
   const rotateCamera = useCallback(() => {
     updateViewState(v => ({
@@ -58,19 +52,7 @@ export default function App({
       onTransitionEnd: rotateCamera
     }));
   }, []);
-
-
-  const longitude = -49.239831429464097;
-  const latitude = -16.7216789466306;
-  const sideLength = 0.1; // in degrees
-
-  const topLeft = [longitude - sideLength/500, latitude + sideLength/500];
-  const topRight = [longitude + sideLength/500, latitude + sideLength/500];
-  const bottomRight = [longitude + sideLength/500, latitude - sideLength/500];
-  const bottomLeft = [longitude - sideLength/500, latitude - sideLength/500];
-
-  const squareCoordinates = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
-
+ 
   const server = 'http://localhost:8080'
 
   useEffect(() => {
@@ -95,20 +77,11 @@ export default function App({
         data: polygonData,      
         getLineColor: [0, 0, 0, 0],
         getFillColor: object => {
-          if (object.properties.index > 1000) {
+          if (object.properties.penetravel == true) {
             return POLYGON_COLORS.COLOR_1;
-          } else if (object.properties.index > 80) {
+          } else if (object.properties.penetravel == false){
             return POLYGON_COLORS.COLOR_2;
-          } else if (object.properties.index > 70) {
-            return POLYGON_COLORS.COLOR_3;
-          } else if (object.properties.index > 60) {
-            return POLYGON_COLORS.COLOR_4;
-          } else if (object.properties.index > 50) {
-            return POLYGON_COLORS.COLOR_5;
-          } else if (object.properties.index > 25) {
-            return POLYGON_COLORS.COLOR_6;
-          }
-          return POLYGON_COLORS.OTHER;
+          } 
         },
         lineWidthMinPixels: 0,
         pickable: true,
@@ -116,7 +89,8 @@ export default function App({
         extruded: true,
         wireframe: true,
         getElevation: f => {
-          return f.properties.index ? f.properties.index : 0;
+          console.log("fffffffffffff", f.properties)
+          return (f.properties.penetravel ? f.properties.index : 0)*100;
         },
         transitions: {
           getElevation: {
@@ -127,45 +101,13 @@ export default function App({
       })
     ] : [];
   
-  // let polygonData;
-  
-  // async function GetAmostras() {
-  //   const response = await fetch(`${server}/getamostras`)
-    
-  //   if (response.status >= 200 && response.status <=300){
-  //     const polygon = await response.json()  
-  //     polygonData = polygon
-  //     return polygonData
-  //   } else {
-  //     console.log("ERRO");
-  //   }  
-  // }
-
-  // async function ExecuteGetAmostras(){
-  //   await GetAmostras()
-  // }
-  // ExecuteGetAmostras();
-
-//   const polygonData = [  
-//     {    
-//       type: 'Feature',    
-//       properties: {      
-//         name: 'Polygon 1',
-//         index: 500    
-//       },
-//       geometry: {      
-//         type: 'Polygon',      
-//         coordinates:  [squareCoordinates],     
-//     }
-//   },
-// ];
-
-  
   const getTooltip = ({object}) => {
     if (!object) return false;
     const {index} = object.properties;
+    const {penetravel} = object.properties;
 
-    return `Index: ${index.toFixed(2)}`;
+    return `Profundidade: ${index.toFixed(2)} metros
+            Penetrável: ${penetravel}`;    
   };
 
   return (
@@ -179,8 +121,7 @@ export default function App({
       getTooltip={getTooltip}
       onLoad={rotateCamera}
       onViewStateChange={v => updateViewState(v.viewState)}
-    >
-           
+    >           
       <StaticMap reuseMaps mapStyle={mapStyle} preventStyleDiffing={true} />
     </DeckGL>
 
