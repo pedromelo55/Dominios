@@ -16,8 +16,8 @@ const INITIAL_VIEW_STATE = {
 
 // Colors for the breaks of the polygon layer
 const POLYGON_COLORS = {
-  COLOR_1: [225, 83, 131],
-  COLOR_2: [254, 246, 181],
+  COLOR_1: [255, 0, 127],
+  COLOR_2: [255, 178, 102],
   COLOR_3: [250, 138, 118],
   COLOR_4: [255, 166, 121],
   COLOR_5: [255, 194, 133],
