@@ -84,7 +84,7 @@ const Amostra = () => {
 
 					<div style={{backgroundColor: '', display:'flex',  flexDirection: 'column', alignItems: 'center', justifyContent:'center', width: '100%', height:'100%'}}>
 						<div style={{backgroundColor: '', display:'flex',  flexDirection: 'column', height:'50px', width:'500px', margin:'30px 0'}}>
-						<Label style={{ textAlign:'start', marginBottom: '10px', fontSize:'18px' }}>Número da amostra</Label>
+						<Label style={{ textAlign:'start', marginBottom: '10px', fontSize:'18px'  }}>Número da amostra</Label>
 							<Input style= {{width: '100%',  padding: '10px', border: 'none', marginBottom: '10px', borderRadius: '5px'}}
 									value={numAmostra} onChange={(e) => setNumAmostra(e.target.value)}
 							></Input>	
@@ -105,10 +105,19 @@ const Amostra = () => {
 						
 				
 				</div>
+						<div style={{backgroundColor: '', display:'flex',  flexDirection: 'column', height:'100px', width:'100px', margin:'0px 0'}}>
+							<button style={{display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '6px 14px', 
+							fontFamily: 'Roboto, sans-serif', borderRadius: '6px', border: 'none', fontSize: '16px',
+							background: 'linear-gradient(180deg, #2ea44f 0%, #107E2C 100%)',
+							color: '#fff',
+							backgroundOrigin: 'border-box',
+							boxShadow: '0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2)',
+							cursor: 'pointer'
+							}} onClick={() => Salvar()}>Salvar</button>         
+							
+							                    
+						</div>   	
 
-				<div style={{backgroundColor: '', display:'flex', width: '100%', height:'20%', alignItems:'center', justifyContent:'center'}}>
-					<button onClick={() => Salvar()}>Salvar</button>                                
-				</div>   	
 			
 			</div>
 		
