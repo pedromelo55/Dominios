@@ -23,17 +23,18 @@ export async function GetAmostras (req, res) {
 }
 
 export async function Enroll (req,res) {
-    const { num_rel, num_furo, cooX, cooY, nspt1, nspt2 } = req.body;
+    const { num_rel, cooX, cooY, nspt1, nspt2, num_amostra } = req.body;
+
     
     try {
 
         await Amostra.create({
             num_rel: num_rel,
-            num_furo: num_furo,
             cooX: cooX,
             cooY: cooY,
             nspt1: nspt1,
-            nspt2 : nspt2
+            nspt2 : nspt2,
+            num_amostra: num_amostra
         });
         res.json({msg: "Registration Successful"});
     } catch (error){
