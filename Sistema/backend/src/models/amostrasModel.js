@@ -21,13 +21,21 @@ export const Amostra = conexao.define('amostra', {
 
     nspt12: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
     },
 
     nspt23: {
         type: Sequelize.INTEGER,
         allowNull: true,
-    }
+    },
+
+    num_amostra: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+    },    
+},
+{
+    timestamps: false
 });
 
 //Cria tabela

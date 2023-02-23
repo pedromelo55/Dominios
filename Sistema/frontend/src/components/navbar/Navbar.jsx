@@ -13,10 +13,7 @@ const Navbar = () => {
   return (
     <>
       
-      <Nav>
-      <Logo to='/Geotécnica' activeStyle>
-              Geotécnica
-          </Logo>
+      <Nav style={{ display: 'flex', justifyContent: 'center' }}>
         <NavMenu>
           <NavLink to='/Home' activeStyle>
             Home
@@ -27,10 +24,10 @@ const Navbar = () => {
           <NavLink to='/Mapa' activeStyle>
             Visualize
           </NavLink>         
+          <NavBtn>
+            <NavBtnLink to='/Amostra'>Cadastrar</NavBtnLink>
+          </NavBtn>
         </NavMenu>
-        <NavBtn>
-          <NavBtnLink to='/Amostra'>Cadastrar</NavBtnLink>
-        </NavBtn>
         
       </Nav>
     

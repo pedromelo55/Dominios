@@ -1,16 +1,5 @@
 import { Amostra } from '../models/amostrasModel.js'
 
-export async function GetRelatorio (req, res) {
-    try {
-        const relatorio = await Amostra.findAll({
-            attributes: ['id', 'num_rel', 'num_furo']
-        });
-        res.json(relatorio)
-    } catch (error) {
-        console.error(error)
-    }
-}
-
 export async function GetAmostras (req, res) {
      try{
         const amostras = await Amostra.findAll({
@@ -23,17 +12,17 @@ export async function GetAmostras (req, res) {
 }
 
 export async function Enroll (req,res) {
-    const { num_rel, num_furo, cooX, cooY, nspt1, nspt2 } = req.body;
+    const { num_rel, cooX, cooY, nspt1, nspt2, num_amostra } = req.body;
     
     try {
 
         await Amostra.create({
             num_rel: num_rel,
-            num_furo: num_furo,
             cooX: cooX,
             cooY: cooY,
             nspt1: nspt1,
-            nspt2 : nspt2
+            nspt2 : nspt2,
+            num_amostra: num_amostra
         });
         res.json({msg: "Registration Successful"});
     } catch (error){

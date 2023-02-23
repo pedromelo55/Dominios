@@ -31,9 +31,10 @@ return (
         </NavBtnHome>
     
     </BoxCenter>
-	<BoxHome>
-        <FooterLink>
-         <div>		  		
+    
+	<BoxHome style={{position:'absolute', bottom:'0', width: '100%'}}>
+        <FooterLink >
+         <div >		  		
 			<img src='icone.png'/>
           <h2> GEOTÉCNICA</h2>
             <span >

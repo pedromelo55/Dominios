@@ -18,7 +18,7 @@ app.use(cors())
 
 //rotas sistema
 app.get('/getamostras', GetAmostras)
-app.get('/enroll', Enroll);
+app.post('/salvar', Enroll);
 
 
 app.listen(port,()=>{
