@@ -12,7 +12,6 @@ function GetSquare(x, y){
   const bottomLeft = [longitude - sideLength/500, latitude - sideLength/500];
 
   const squareCoordinates = [topLeft, topRight, bottomRight, bottomLeft, topLeft];
-  //console.log("squareCoordinates:", squareCoordinates)
 
   return squareCoordinates;
 }
@@ -64,38 +63,3 @@ export async function GetAmostras (req, res) {
 }
 
 
-
-// function converter (x, y){
-    
-//     // Define the projections
-//     const sourceProj = '+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs';
-//     const destProj = '+proj=longlat +datum=WGS84 +no_defs';
-    
-//     var convertedCoords = proj4(sourceProj, destProj, [x, y]);
-//     console.log("cx e cy:", convertedCoords)
-
-//     return convertedCoords
-// }
-
-// function teste(){
-
-// // Define the input and output projections
-// // const inputProjection = '+proj=longlat +datum=WGS84 +no_defs';
-// // const outputProjection = '+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs';
-
-// const inputProjection = '+proj=utm +zone=33 +datum=WGS84 +units=m +no_defs';
-// const outputProjection = '+proj=longlat +datum=WGS84 +no_defs';
-    
-
-// // Define the input coordinates
-// const X = 687706.78;
-// const Y = 8150447.23;
-
-// // Convert the coordinates to the output projection
-// const [lon, lat] = proj4(inputProjection, outputProjection, [X, Y]);
-
-// // Print the output coordinates
-// console.log(`Y = ${lat}`);
-// console.log(`X = ${lon}`);
-
-// }

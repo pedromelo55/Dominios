@@ -32,9 +32,7 @@ export const Amostra = conexao.define('amostra', {
     num_amostra: {
         type: Sequelize.INTEGER,
         allowNull: false,
-    },
-
-    
+    },    
 },
 {
     timestamps: false
